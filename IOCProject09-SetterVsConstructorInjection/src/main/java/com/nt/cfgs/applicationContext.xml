@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- constructor injection all properties are manditory to participate in the injection -->
+<bean id="emp1" class="com.nt.beans.Employee1">
+	<constructor-arg name="eno" value="1001"/>
+	<constructor-arg name="ename" value="raja"/>
+	<constructor-arg name="billamt" value="524.865"/>
+</bean>
+
+<bean id="emp2" class="com.nt.beans.Employee1">
+	<constructor-arg name="eno" value="1001"/>
+</bean>
+
+<bean id="emp3" class="com.nt.beans.Employee1">
+	<constructor-arg name="eno" value="1001"/>
+	<constructor-arg name="billamt" value="524.865"/>
+</bean>
+
+<!-- In setter injection  not mandatory participate all properties in the injection-->
+<bean id="stud1" class="com.nt.beans.Student">
+
+	<property name="sname" value="raja"/>
+	<property name="clgname" value="igit"/>
+	<property name="qlfy" value="MCA"/>
+<!-- 	<property name="age" value="22"/> -->
+	
+</bean>
+
+<bean id="cust1" class="com.nt.beans.Customer">
+
+	<constructor-arg name="cno" value="1003"/>
+	<constructor-arg name="cname" value="rakesh"/>
+	<constructor-arg name="billamt" value="5294.865"/>
+		<property name="addrs" value="hyd"/>
+		
+</bean>
+
+</beans>

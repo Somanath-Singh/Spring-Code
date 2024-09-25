@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- datasource cfg -->
+<bean id="drdsOracle" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	<property name="username" value="system"  />
+	<property name="password" value="Admin" />
+
+</bean>
+
+<bean id="drdsMysql" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+	<property name="url" value="jdbc:mysql:///ntspbms615db" />
+	<property name="username" value="root"  />
+	<property name="password" value="root" />
+
+</bean>
+
+<!-- Dao class configuration -->
+<bean id="empOracleDao" class="com.nt.dao.EmployeeOracleDaoImpl">
+	<constructor-arg name="ds" ref="drdsOracle" />
+</bean>
+
+<bean id="empMysqlDao" class="com.nt.dao.EmployeeMysqlDaoImpl">
+	<constructor-arg name="ds" ref="drdsMysql" />
+</bean>
+
+<!-- service class cfg -->
+<bean id="empService" class="com.nt.service.EmployeeMgmtServiceImpl">
+<!-- 	<constructor-arg name="dao" ref="empOracleDao" /> -->
+<constructor-arg name="dao" ref="empMysqlDao" />
+</bean>
+
+<!-- controller cfg -->
+<bean id="controller" class="com.nt.controller.MainController" >
+	<constructor-arg name="service" ref="empService" />
+</bean>
+
+</beans>

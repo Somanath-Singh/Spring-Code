@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--  bean definitions here  -->
+<!--  spring bean configuration  -->
+
+<bean id="dt1" class="java.util.Date"><!-- dependant class -->
+	<property name="year" value="110"/><!-- add 1900 t0 given years so it becomes 2010 -->
+	<property name="month" value="4"/><!-- 0 to 11 -->
+	<property name="date" value="20"/><!-- 1 to 31 -->
+</bean>
+
+<bean id="dt" class="java.util.Date"/><!-- dependant class -->
+
+<bean id="wmg" class="com.nt.beans.WishMessegeGenerator"><!-- target class -->
+
+<!-- whatever the order ist constructor injection takesplace then setter injection takes place -->
+<!-- constructor injection execute during object creation -->
+
+<!-- setterinjection -->
+<property name="date" ref="dt1"/>
+
+<!-- every bean class is identified with bean id so we pass bean id in to the ref -->
+<constructor-arg name="date" ref="dt"></constructor-arg><!-- constructor injection -->
+
+<!--  Setter injection  -->
+</bean>
+
+</beans>
